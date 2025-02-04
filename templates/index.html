@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuck Norris Joki</title>
+    <script src="{{ url_for('static', filename='funkcijas.js') }}"></script>
+</head>
+<body>
+    <a href="/">Joks</a><br>
+    <a href="/uni">Universitātes</a><br>
+    <a href="/jschats">Čats</a>
+    <hr>
+
+    <h3>Meklēt vārdu:</h3>
+    <form method="POST">
+        <label for="meklet">Meklēšanas vārds:</label>
+        <input type="text" id="meklet" name="meklet" placeholder="Ievadi vārdu">
+        <button type="submit">Meklēt</button>
+    </form>
+
+    {% block content %}
+        <h2>Joki šeit!</h2>
+        {% if jokes %}
+            {% for joke in jokes %}
+                <p>{{ joke["value"] }}</p>
+                <img src= "{{ joke["icon_url"] }}" alt="Chuck Norris">
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>Nav atrasti joki, kas satur meklēto vārdu.</p>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>
