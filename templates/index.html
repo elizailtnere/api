@@ -24,7 +24,7 @@
         {% if jokes %}
             {% for joke in jokes %}
                 <p>{{ joke["value"] }}</p>
-                <img src= "{{ joke["icon_url"] }}" alt="Chuck Norris">
+                <img src= "{{ joke["icon_url"] }} alt="Chuck Norris">
                 <hr>
             {% endfor %}
         {% else %}
