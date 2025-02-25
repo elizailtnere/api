@@ -10,18 +10,27 @@ for i in range(len(vardi)):
 visi_vardi = {}
 
 for vards in vardi:
-    if vards in visi_vardi:
-        visi_vardi[vards] +=1
-    else:
-        visi_vardi[vards] = 1
+    if len(vards) >= 4: 
+        if vards in visi_vardi:
+            visi_vardi[vards] += 1
+        else:
+            visi_vardi[vards] = 1
 
+biezakie_vardi = sorted(visi_vardi.items(), key=lambda x: x[1], reverse=True)[:5]
+print("5 biežākie vārdi:")
+for vards, biežums in biezakie_vardi:
+    print(vards, biežums)
 
-biezakais_vards = ""
-varda_skaits = 0
+pirmie_4_burti = {}
 
-for viens in visi_vardi:
-    if visi_vardi[viens] > varda_skaits:
-        biezakais_vards = viens
-        varda_skaits = visi_vardi[viens]
+for vards in vardi:
+    if len(vards) >= 4:
+        pirmie_4_burti_key = vards[:4]
+        if pirmie_4_burti_key in pirmie_4_burti:
+            pirmie_4_burti[pirmie_4_burti_key] += 1
+        else:
+            pirmie_4_burti[pirmie_4_burti_key] = 1
 
-print (biezakais_vards, varda_skaits)
+print("\nVārdu grupas ar identiskiem pirmajiem 4 burtiem:")
+for grupa, skaits in pirmie_4_burti.items():
+    print(f"{grupa}: {skaits}")

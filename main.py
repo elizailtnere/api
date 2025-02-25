@@ -6,7 +6,22 @@ app = Flask(__name__)
 
 banned_lieotaji = []
 
-chat_background: "white"
+def chat_background():
+    if request.method == "POST":
+        message = request.form.get("message")  # Saņemam ziņu no formas
+        if message and "rozā" in message.lower():
+            return jsonify({"status": "success", "background": "pink", "message": message})
+        else:
+            return jsonify({"status": "success", "background": "white", "message": message})
+    
+    return '''
+        <form method="POST">
+            <label for="message">Ierakstiet ziņu:</label>
+            <input type="text" name="message" required>
+            <button type="submit">Sūtīt</button>
+        </form>
+    '''
+       
 
 @app.route('/', methods=["POST", "GET"])
 def index():
